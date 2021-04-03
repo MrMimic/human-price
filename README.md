@@ -2,7 +2,10 @@ human-price
 
 ### Build
 
+    python3 -m venv venv
+    source venv/bin/activate
     nox -s build
+    nox -s tests
 
 ### Build on GCP
 

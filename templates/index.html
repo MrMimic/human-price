@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>Human value</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="shortcut icon" href="{{ favicon_path }}">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/sliderBubble.js') }}"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Human value</h2>
+
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#applet">Applet</a></li>
+            <li><a data-toggle="tab" href="#about">About</a></li>
+        </ul>
+
+        <div class="tab-content">
+
+            <div id="applet" class="tab-pane fade in active">
+                <h3>How much is a human body worth?</h3>
+                <form method="POST">
+                    <input class="weight-slider" type="range" min="10" max="200" step="1" id="id_weight_slider" value={{
+                        weight }} class="slider" name="weight_slider"
+                        onchange="updateTextInput(this.value, this.name);">
+                    <input class="weight-value" type="text" id="weight_slider_value" maxlength="4" size="4"
+                        value="{{ weight }}">kg
+                    <p>
+                        <input class="user-search-button-input" type="submit">
+                    </p>
+
+                    <p><b>TOTAL: {{ total | safe }} $</b></p>
+                    </br>
+
+                    {% for chemical in chemicals %}
+                    <div>
+                        <p><b>{{ chemical.name }}</b> (Z{{ chemical.Z}}, {{ chemical.symbol}}): {{ chemical.worth }}$
+                            ({{ chemical.price_per_kg }} $/kg)</p>
+                    </div>
+                    {% endfor %}
+
+                </form>
+
+
+            </div>
+
+            <div id="about" class="tab-pane fade">
+                <h3>About</h3>
+                <p>Github @MrMimic</p>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>
