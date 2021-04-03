@@ -4,6 +4,7 @@
 .pytest*
 __pycache__
 .mypy*
+.theia
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
