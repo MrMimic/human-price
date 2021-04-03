@@ -1,3 +1,10 @@
+# Custom
+
+.vscode
+.pytest*
+__pycache__
+.mypy*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

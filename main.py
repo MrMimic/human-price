@@ -16,14 +16,14 @@ def convert_scientific_notation(x: str) -> float:
         float: The casted value.
     """
     try:
-        x = float(x)
+        casted = float(x)
     except ValueError:
         # The 'x' is not a real ASCII x.
         unit = float(x.split("×")[0])
         # Neither is the "-"
         exposant = x.split("×")[1].replace("10", "").replace("−", "-")
-        x = float(f"{unit}E{exposant}")
-    return x
+        casted = float(f"{unit}E{exposant}")
+    return casted
 
 
 def average_range(x: str) -> float:
@@ -37,11 +37,11 @@ def average_range(x: str) -> float:
     """
     x = x.replace(" ", "")
     try:
-        x = float(x)
+        casted = float(x)
     except ValueError:
-        x = [convert_scientific_notation(i) for i in x.split("–")]
-        x = np.mean(x)
-    return x
+        splited = [convert_scientific_notation(i) for i in x.split("–")]
+        casted = float(np.mean(splited))
+    return casted
 
 
 def get_chemical_prices() -> pd.DataFrame:
@@ -56,8 +56,9 @@ def get_chemical_prices() -> pd.DataFrame:
     chemicals_price = pd.read_html(wiki_chemical_price_page, flavor="bs4")[0]
     # Select columns of interest
     chemicals_price = chemicals_price[["Z", "Symbol", "Name", "Price[5]"]]
-    chemicals_price = pd.DataFrame(np.array(chemicals_price.values), columns=[
-                                   "Z", "symbol", "name", "price/kg", "price/L"]).drop(["price/L"], axis=1)
+    chemicals_price = pd.DataFrame(
+        np.array(chemicals_price.values), columns=[
+            "Z", "symbol", "name", "price/kg", "price/L"]).drop(["price/L"], axis=1)
     # Remove not traded chemicals
     chemicals_price = chemicals_price[chemicals_price["price/kg"]
                                       != "Not traded."]
@@ -119,7 +120,8 @@ app = Flask(__name__)
 def root_index():
     data = get_data(weight=75)
     total_value = data["value (U$D)"].sum()
-    return data.to_dict()
+    output = {"total": total_value, "data": data.to_dict()}
+    return output
 
 
 if __name__ == "__main__":

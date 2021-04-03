@@ -1,0 +1,18 @@
+language: python
+
+python:
+  - "3.7"
+
+# Ugly but setupt.py dont want to install the lib
+before_install:
+  - export PYTHONPATH=$PYTHONPATH:$(pwd)
+
+# command to install dependencies
+install:
+  - python3 -m pip install -U pip
+  - python3 -m pip install nox
+  - nox -s build
+
+# command to run tests
+script:
+  - nox -s tests lint type
