@@ -3,11 +3,6 @@ import sys
 
 import nox
 
-# Update pythonpath
-src_folder = os.path.join("src", "python")
-sys.path.append(src_folder)
-os.environ["PYTHONPATH"] = "src/python"
-
 
 @nox.session(python=False)
 def build(session):
@@ -20,6 +15,13 @@ def build(session):
 
 @nox.session(python=False)
 def tests(session):
+    # Update pythonpath
+    src_folder = os.path.join("src", "python")
+    sys.path.append(src_folder)
+    try:
+        os.environ["PYTHONPATH"] = f'{os.environ["PYTHONPATH"]}src/python'
+    except KeyError:
+        os.environ["PYTHONPATH"] = "src/python"
     session.run("pytest", "tests/")
 
 

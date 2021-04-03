@@ -22,7 +22,6 @@ def get_data(weight: float = 70) -> pd.DataFrame:
     global_df = pd.merge(human_composition, chemicals_price,
                          how="left").dropna()
     global_df["Z"] = global_df["Z"].apply(lambda x: int(x))
-    print(global_df.head())
     global_df["price_per_kg"] = global_df["price/kg"].apply(average_range)
     global_df = global_df.sort_values(by="Z")
     # Apply weight coefficient
@@ -48,10 +47,6 @@ def root_index():
     data = get_data(weight=weight)
     total_value = data["worth"].sum()
     chemicals = data.to_dict('records')
-
-    for c in chemicals:
-        print(c)
-        print()
 
     # Create HTML context
     context = {
