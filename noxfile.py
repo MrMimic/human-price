@@ -19,7 +19,7 @@ def tests(session):
     src_folder = os.path.join("src", "python")
     sys.path.append(src_folder)
     try:
-        os.environ["PYTHONPATH"] = f'{os.environ["PYTHONPATH"]}src/python'
+        os.environ["PYTHONPATH"] = f'{os.environ["PYTHONPATH"]}:src/python'
     except KeyError:
         os.environ["PYTHONPATH"] = "src/python"
     session.run("pytest", "tests/")
