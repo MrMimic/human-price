@@ -1,8 +1,10 @@
 import os
 
 import pandas as pd
-from flask import Flask
-from utilities import average_range, get_chemical_prices, get_body_composition
+from flask import Flask, render_template
+from flask.helpers import url_for
+
+from utilities import average_range, get_body_composition, get_chemical_prices
 
 
 def get_data(weight: float = 70) -> pd.DataFrame:
@@ -32,12 +34,22 @@ def get_data(weight: float = 70) -> pd.DataFrame:
 app = Flask(__name__)
 
 
+def get_favicon_path():
+    return url_for("static", filename="favicon.ico")
+
+
 @app.route("/")
 def root_index():
     data = get_data(weight=75)
     total_value = data["value (U$D)"].sum()
     output = {"total": total_value, "data": data.to_dict()}
-    return output
+
+    # Create HTML context
+    context = {"favicon_path": get_favicon_path(), "total": output["total"]}
+    # Return render template + context
+    html_template = render_template("index.html", **context)
+
+    return html_template
 
 
 if __name__ == "__main__":
