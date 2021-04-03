@@ -1,6 +1,11 @@
+import os
+import sys
 import unittest
 
-from utilities import convert_scientific_notation, average_range
+src_folder = os.path.join("src", "python")
+sys.path.append(src_folder)
+
+from utilities import average_range, convert_scientific_notation
 
 class GetDataTest(unittest.TestCase):
 
@@ -13,4 +18,3 @@ class GetDataTest(unittest.TestCase):
         string = "212×10−1–212×10−2"
         converted = average_range(string)
         self.assertIsInstance(converted, float)
-    
