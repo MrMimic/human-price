@@ -10,8 +10,8 @@ before_install:
 # command to install dependencies
 install:
   - python3 -m pip install -U pip
-  - python3 -m pip install nox
-  - nox -s build
+  - python3 -m pip install poetry
+  - poetry install
 
 # command to run tests
 script:
