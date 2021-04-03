@@ -3,6 +3,11 @@ import sys
 
 import nox
 
+# Update pythonpath
+src_folder = os.path.join("src", "python")
+sys.path.append(src_folder)
+os.environ["PYTHONPATH"] = "src/python"
+
 
 @nox.session(python=False)
 def build(session):
@@ -11,10 +16,6 @@ def build(session):
     session.install("poetry")
     session.run("poetry", "shell")
     session.run("poetry", "install")
-    # Update pythonpath
-    src_folder = os.path.join("src", "python")
-    sys.path.append(src_folder)
-    os.environ["PYTHONPATH"] = "/src/python"
 
 
 @nox.session(python=False)
