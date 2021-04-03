@@ -12,4 +12,4 @@ Create Docker image
 
 Run cloud function
 
-> gcloud run deploy --image gcr.io/human-price/human-price --platform managed
+> gcloud run deploy --image gcr.io/human-price/human-price --platform managed --max-instances=2

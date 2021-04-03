@@ -5,3 +5,12 @@ README.md
 *.pyd
 __pycache__
 .pytest_cache
+.nox
+.mypy_cache
+.theia
+.vscode
+tests
+venv
+.travis.yml
+LICENCE
+pyproject.toml

@@ -7,6 +7,10 @@ ENV PYTHONUNBUFFERED True
 
 # Copy local code to the container image.
 ENV APP_HOME /app
+
+# Update python path
+ENV PYTHONPATH="${PYTHONPATH}:src/python"
+
 WORKDIR $APP_HOME
 COPY . ./
 

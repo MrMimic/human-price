@@ -5,6 +5,8 @@
 __pycache__
 .mypy*
 .theia
+venv
+.nox
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
