@@ -4,7 +4,6 @@ from typing import Any, Dict, List
 import numpy as np
 import pandas as pd
 from flask import Flask, render_template, request
-from flask.helpers import url_for
 from utilities import average_range, get_body_composition, get_chemical_prices
 
 
@@ -63,7 +62,8 @@ def compute_other_worths(chemicals: List[Dict[str, Any]]) -> float:
         chemical["worth"] for chemical in chemicals
         if chemical["name"] not in excluded
     ]
-    return round(np.sum(values), 2)
+    summed_values = float(round(np.sum(values), 2))  # type: ignore
+    return summed_values
 
 
 app = Flask(__name__)
