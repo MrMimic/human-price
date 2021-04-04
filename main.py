@@ -1,5 +1,7 @@
 import os
+from typing import Any, Dict, List
 
+import numpy as np
 import pandas as pd
 from flask import Flask, render_template, request
 from flask.helpers import url_for
@@ -30,11 +32,41 @@ def get_data(weight: float = 70) -> pd.DataFrame:
     return global_df.sort_values(by="worth", ascending=False)
 
 
+def format_chemical(chemicals: List[Dict[str, Any]],
+                    element: str) -> Dict[str, str]:
+    """Extract the element from a list of dicts and format it for template rendering.
+
+    Args:
+        chemicals (List[Dict[str, Any]]): The list of chemicals.
+        element (str): The searched chemical.
+
+    Returns:
+        Dict[str, str]: The formated dict representing the wished element.
+    """
+    chemical = next(chemical for chemical in chemicals
+                    if chemical["name"] == element)
+    chemical["worth"] = round(chemical["worth"], 2)
+    return chemical
+
+
+def compute_other_worths(chemicals: List[Dict[str, Any]]) -> float:
+    """Compute the worth of all chemicals, except those that are on the picture.
+
+    Args:
+        chemicals (List[Dict[str, Any]]): The complete list of chemicals.
+
+    Returns:
+        float: The summed values of other components.
+    """
+    excluded = ["Oxygen", "Hydrogen", "Nitrogen", "Carbon"]
+    values = [
+        chemical["worth"] for chemical in chemicals
+        if chemical["name"] not in excluded
+    ]
+    return round(np.sum(values), 2)
+
+
 app = Flask(__name__)
-
-
-def get_favicon_path():
-    return url_for("static", filename="favicon.ico")
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -48,12 +80,25 @@ def root_index():
     total_value = data["worth"].sum()
     chemicals = data.to_dict('records')
 
+    # Get principal elements
+    oxygen = format_chemical(chemicals, "Oxygen")
+    carbon = format_chemical(chemicals, "Carbon")
+    hydrogen = format_chemical(chemicals, "Hydrogen")
+    nitrogen = format_chemical(chemicals, "Nitrogen")
+
+    others_worth = compute_other_worths(chemicals)
+
     # Create HTML context
     context = {
-        "favicon_path": get_favicon_path(),
         "total": round(total_value, 2),
         "weight": int(weight),
-        "chemicals": chemicals}
+        "chemicals": chemicals,
+        "oxygen": oxygen,
+        "carbon": carbon,
+        "hydrogen": hydrogen,
+        "nitrogen": nitrogen,
+        "others_worth": others_worth
+    }
     # Return render template + context
     html_template = render_template("index.html", **context)
 

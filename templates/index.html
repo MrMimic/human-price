@@ -10,7 +10,7 @@
 
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="shortcut icon" href="{{ favicon_path }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -48,23 +48,27 @@
                     <div>
                         <div class="wrap">
                             <img class="chemical" src="static/images/others.png" alt="others">
-                            <p class="description">OTHERS</p>
+                            <p class="description"><b>Others: {{ others_worth | safe }}$</b></p>
                         </div>
                         <div class="wrap">
                             <img class="chemical" src="static/images/nitrogen.png" alt="nitrogen">
-                            <p class="description">NITROGEN</p>
+                            <p class="description"><b>{{ nitrogen.name }}</b> (Z{{ nitrogen.Z}}, {{ nitrogen.symbol}}):
+                                <b>{{ nitrogen.worth }}$</b> ({{ nitrogen.price_per_kg }} $/kg)</b></p>
                         </div>
                         <div class="wrap">
                             <img class="chemical" src="static/images/hydrogen.png" alt="hydrogen">
-                            <p class="description">HYDROGEN</p>
+                            <p class="description"><b>{{ hydrogen.name }}</b> (Z{{ hydrogen.Z}}, {{ hydrogen.symbol}}):
+                                <b>{{ hydrogen.worth }}$</b> ({{ hydrogen.price_per_kg }} $/kg)</b></p>
                         </div>
                         <div class="wrap">
                             <img class="chemical" src="static/images/carbon.png" alt="carbon">
-                            <p class="description">CARBON</p>
+                            <p class="description"><b>{{ carbon.name }}</b> (Z{{ carbon.Z}}, {{ carbon.symbol}}): <b>{{
+                                    carbon.worth }}$</b> ({{ carbon.price_per_kg }} $/kg)</b></p>
                         </div>
                         <div class="wrap">
                             <img class="chemical" src="static/images/oxygen.png" alt="oxygen">
-                            <p class="description">OXYGEN</p>
+                            <p class="description"><b>{{ oxygen.name }}</b> (Z{{ oxygen.Z}}, {{ oxygen.symbol}}): <b>{{
+                                    oxygen.worth }}$</b> ({{ oxygen.price_per_kg }} $/kg)</b></p>
                         </div>
                     </div>
                     {% for chemical in chemicals %}
