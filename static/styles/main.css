@@ -1,0 +1,36 @@
+.chemical {
+    width: 30%;
+    transform: scale(1);
+    transition: transform 0.5s;
+    display: inline-block;
+    margin-bottom: 0%;
+    margin-top: 0%;
+}
+
+.chemical:hover {
+    transform: scale(1.1);
+}
+
+.description {
+    display: inline-block;
+    width: 30%;
+    color: rgb(0, 0, 0);
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s, visibility 0.2s;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.wrap {
+    margin-bottom: 0%;
+    margin-top: 0%;
+}
+
+.wrap:hover .description {
+    display: inline-block;
+    visibility: visible;
+    opacity: 1;
+    margin-bottom: 0;
+    margin-top: 0;
+}

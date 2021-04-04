@@ -17,6 +17,7 @@ pytest = "^6.2.2"
 nox = "^2020.12.31"
 flake8 = "^3.9.0"
 mypy = "^0.812"
+yapf = "^0.31.0"
 
 [tool.poetry.dev-dependencies]
 

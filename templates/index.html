@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="shortcut icon" href="{{ favicon_path }}">
 
@@ -45,8 +45,28 @@
                     </p>
 
                     <p><b>TOTAL: {{ total | safe }} $</b></p>
-                    </br>
-
+                    <div>
+                        <div class="wrap">
+                            <img class="chemical" src="static/images/others.png" alt="others">
+                            <p class="description">OTHERS</p>
+                        </div>
+                        <div class="wrap">
+                            <img class="chemical" src="static/images/nitrogen.png" alt="nitrogen">
+                            <p class="description">NITROGEN</p>
+                        </div>
+                        <div class="wrap">
+                            <img class="chemical" src="static/images/hydrogen.png" alt="hydrogen">
+                            <p class="description">HYDROGEN</p>
+                        </div>
+                        <div class="wrap">
+                            <img class="chemical" src="static/images/carbon.png" alt="carbon">
+                            <p class="description">CARBON</p>
+                        </div>
+                        <div class="wrap">
+                            <img class="chemical" src="static/images/oxygen.png" alt="oxygen">
+                            <p class="description">OXYGEN</p>
+                        </div>
+                    </div>
                     {% for chemical in chemicals %}
                     <div>
                         <p><b>{{ chemical.name }}</b> (Z{{ chemical.Z}}, {{ chemical.symbol}}): {{ chemical.worth }}$

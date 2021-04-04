@@ -27,7 +27,7 @@ def get_data(weight: float = 70) -> pd.DataFrame:
     # Apply weight coefficient
     global_df["mass"] = global_df["fraction"] * weight
     global_df["worth"] = global_df["mass"] * global_df["price_per_kg"]
-    return global_df.sort_values(by="mass", ascending=False)
+    return global_df.sort_values(by="worth", ascending=False)
 
 
 app = Flask(__name__)
