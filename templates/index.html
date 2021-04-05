@@ -6,16 +6,12 @@
     <title>Human value</title>
 
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aclonica">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 
     <script type="text/javascript" src="{{ url_for('static', filename='js/sliderBubble.js') }}"></script>
 </head>
@@ -33,19 +29,41 @@
         <div class="tab-content">
 
             <div id="applet" class="tab-pane fade in active">
-                <h3>How much is a human body worth?</h3>
-                <form method="POST">
-                    <input class="weight-slider" type="range" min="10" max="200" step="1" id="id_weight_slider" value={{
-                        weight }} class="slider" name="weight_slider"
-                        onchange="updateTextInput(this.value, this.name);">
-                    <input class="weight-value" type="text" id="weight_slider_value" maxlength="4" size="4"
-                        value="{{ weight }}">kg
-                    <p>
-                        <input class="user-search-button-input" type="submit">
-                    </p>
 
-                    <p><b>TOTAL: {{ total | safe }} $</b></p>
-                    <div>
+                <!-- HEADER -->
+                <div class="header-intro">
+                    <h3>
+                        How much is a human body worth?
+                    </h3>
+                    <p>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard
+                        dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
+                        book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially
+                        unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
+                        recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                    </p>
+                </div>
+
+                <form method="POST">
+
+                    <!-- INTERRACTION -->
+                    <div class="interraction">
+                        <div class="slider-box">
+                            <input class="weight-slider" type="range" min="10" max="200" step="1" id="weight-slider" value={{ weight }} class="slider" name="weight_slider" onchange="updateTextInput(this.value);">
+                            <span id="weight-value">{{ weight }}kg</span>
+                        </div>
+                        <div id="search-button">
+                            <span class="noselect">Compute</span>
+                            <button class="search-button-fire" type="submit">
+                            <div id="circle"></div>
+                        </div>
+                    </div>
+
+                    <!-- RESULT -->
+                    <div class="result">
+                        <p><b>TOTAL: {{ total | safe }} $</b></p>
+                    </div>
+                    <div class="body-scheme">
                         <div class="wrap">
                             <img class="chemical" src="static/images/others.png" alt="others">
                             <p class="description"><b>Others: {{ others_worth | safe }}$</b></p>
@@ -53,12 +71,14 @@
                         <div class="wrap">
                             <img class="chemical" src="static/images/nitrogen.png" alt="nitrogen">
                             <p class="description"><b>{{ nitrogen.name }}</b> (Z{{ nitrogen.Z}}, {{ nitrogen.symbol}}):
-                                <b>{{ nitrogen.worth }}$</b> ({{ nitrogen.price_per_kg }} $/kg)</b></p>
+                                <b>{{ nitrogen.worth }}$</b> ({{ nitrogen.price_per_kg }} $/kg)</b>
+                            </p>
                         </div>
                         <div class="wrap">
                             <img class="chemical" src="static/images/hydrogen.png" alt="hydrogen">
                             <p class="description"><b>{{ hydrogen.name }}</b> (Z{{ hydrogen.Z}}, {{ hydrogen.symbol}}):
-                                <b>{{ hydrogen.worth }}$</b> ({{ hydrogen.price_per_kg }} $/kg)</b></p>
+                                <b>{{ hydrogen.worth }}$</b> ({{ hydrogen.price_per_kg }} $/kg)</b>
+                            </p>
                         </div>
                         <div class="wrap">
                             <img class="chemical" src="static/images/carbon.png" alt="carbon">
@@ -71,8 +91,9 @@
                                     oxygen.worth }}$</b> ({{ oxygen.price_per_kg }} $/kg)</b></p>
                         </div>
                     </div>
+
                     {% for chemical in chemicals %}
-                    <div>
+                    <div class="result-table">
                         <p><b>{{ chemical.name }}</b> (Z{{ chemical.Z}}, {{ chemical.symbol}}): {{ chemical.worth }}$
                             ({{ chemical.price_per_kg }} $/kg)</p>
                     </div>
