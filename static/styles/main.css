@@ -10,17 +10,28 @@ body {
     text-align: center;
 }
 
+.interraction-body {
+    display: flex;
+    flex-direction: row;
+}
+
+.body-scheme {
+
+}
+
 .interraction {
     width: 80%;
     margin-bottom: 5%;
-    display: flex;
-    flex-direction: row;
+    /* display: flex; */
+    /* flex-direction: row; */
 }
 
 .slider-box {
     width: 100%;
     display: flex;
     flex-direction: row;
+    height: 14pt;
+    margin-top: 100pt;
 }
 
 .weight-slider#weight-slider {
@@ -69,6 +80,7 @@ span#weight-value {
   background: grey;
   height: 16pt;
   min-width: 20%;
+  max-width: 40%;
   border: none;
   border-radius: 10px;
   color: #eee;
@@ -81,7 +93,10 @@ span#weight-value {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  padding-top: 5px;
+  margin-top: 50pt;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #search-button #circle {
@@ -121,10 +136,20 @@ span#weight-value {
 .result {
     margin-top: 5%;
     margin-bottom: 5%;
-    text-align: center;
-  font-family: Aclonica;
+    margin-left: 10%;
+    font-family: Aclonica;
+    font-size: 18pt;
 }
 
+.description {
+    color: white;
+}
+
+.body-js {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 .chemical {
     width: 30%;
@@ -150,7 +175,7 @@ span#weight-value {
 .description {
     display: inline-block;
     width: 50%;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     visibility: hidden;
     opacity: 0;
     transition: opacity 0.2s, visibility 0.2s;
@@ -161,6 +186,7 @@ span#weight-value {
 .wrap {
     margin-bottom: 0;
     margin-top: 0;
+    font-size: 8pt;
 }
 
 .wrap:hover .description {
@@ -169,4 +195,18 @@ span#weight-value {
     opacity: 1;
     margin-bottom: 0;
     margin-top: 0;
+}
+
+.details-table {
+    margin-top: 5%;
+    font-family: Aclonica;
+    text-align: center;
+}
+
+.details-text {
+    margin-bottom: 2%;
+}
+
+.result-table {
+    font-family: 'Courier New', Courier, monospace;
 }
