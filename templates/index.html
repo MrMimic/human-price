@@ -14,6 +14,7 @@
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 
     <script type="text/javascript" src="{{ url_for('static', filename='js/sliderBubble.js') }}"></script>
+    <script type="text/javascript" src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
 </head>
 
 <body>
@@ -30,15 +31,17 @@
 
             <div id="applet" class="tab-pane fade in active">
 
-                <!-- HEADER -->
                 <div class="header-intro">
                     <h3>
                         How much is a human body worth?
                     </h3>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-                        aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna
+                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                        commodo consequat. Duis
+                        aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                        pariatur. Excepteur sint
                         occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                     </p>
                 </div>
@@ -46,20 +49,21 @@
                 <form method="POST">
 
                     <div class="interraction-body">
-                        <!-- INTERRACTION -->
+
                         <div class="interraction">
                             <div class="slider-box">
-                                <input class="weight-slider" type="range" min="10" max="200" step="1" id="weight-slider" value={{ weight }} class="slider" name="weight_slider" onchange="updateTextInput(this.value);">
+                                <input class="weight-slider" type="range" min="10" max="200" step="1" id="weight-slider"
+                                    value={{ weight }} class="slider" name="weight_slider"
+                                    onchange="updateTextInput(this.value);">
                                 <span id="weight-value">{{ weight }}kg</span>
                             </div>
                             <div id="search-button">
                                 <span class="noselect">Compute</span>
                                 <button class="search-button-fire" type="submit">
-                                <div id="circle"></div>
+                                    <div id="circle"></div>
                             </div>
                         </div>
 
-                        <!-- RESULT -->
                         <div class="body-scheme">
                             <div class="result">
                                 <p><b>TOTAL: {{ total | safe }} $</b></p>
@@ -71,24 +75,28 @@
                                 </div>
                                 <div class="wrap">
                                     <img class="chemical" src="static/images/nitrogen.png" alt="nitrogen">
-                                    <p class="description"><b>{{ nitrogen.name }}</b> (Z{{ nitrogen.Z}}, {{ nitrogen.symbol}}):
+                                    <p class="description"><b>{{ nitrogen.name }}</b> (Z{{ nitrogen.Z}}, {{
+                                        nitrogen.symbol}}):
                                         <b>{{ nitrogen.worth }}$</b> ({{ nitrogen.price_per_kg }} $/kg)</b>
                                     </p>
                                 </div>
                                 <div class="wrap">
                                     <img class="chemical" src="static/images/hydrogen.png" alt="hydrogen">
-                                    <p class="description"><b>{{ hydrogen.name }}</b> (Z{{ hydrogen.Z}}, {{ hydrogen.symbol}}):
+                                    <p class="description"><b>{{ hydrogen.name }}</b> (Z{{ hydrogen.Z}}, {{
+                                        hydrogen.symbol}}):
                                         <b>{{ hydrogen.worth }}$</b> ({{ hydrogen.price_per_kg }} $/kg)</b>
                                     </p>
                                 </div>
                                 <div class="wrap">
                                     <img class="chemical" src="static/images/carbon.png" alt="carbon">
-                                    <p class="description"><b>{{ carbon.name }}</b> (Z{{ carbon.Z}}, {{ carbon.symbol}}): <b>{{
+                                    <p class="description"><b>{{ carbon.name }}</b> (Z{{ carbon.Z}}, {{
+                                        carbon.symbol}}): <b>{{
                                             carbon.worth }}$</b> ({{ carbon.price_per_kg }} $/kg)</b></p>
                                 </div>
                                 <div class="wrap">
                                     <img class="chemical" src="static/images/oxygen.png" alt="oxygen">
-                                    <p class="description"><b>{{ oxygen.name }}</b> (Z{{ oxygen.Z}}, {{ oxygen.symbol}}): <b>{{
+                                    <p class="description"><b>{{ oxygen.name }}</b> (Z{{ oxygen.Z}}, {{
+                                        oxygen.symbol}}): <b>{{
                                             oxygen.worth }}$</b> ({{ oxygen.price_per_kg }} $/kg)</b></p>
                                 </div>
                             </div>
@@ -100,26 +108,44 @@
                             Details
                         </h3>
                         <div class="details-text">
-                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
-                            eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam
-                            voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione
-                            voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit,
-                            sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima
-                            veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis
-                            autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem
+                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+                            laudantium, totam rem aperiam,
+                            eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
+                            explicabo. Nemo enim ipsam
+                            voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni
+                            dolores eos qui ratione
+                            voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,
+                            consectetur, adipisci velit,
+                            sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat
+                            voluptatem. Ut enim ad minima
+                            veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex
+                            ea commodi consequatur? Quis
+                            autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae
+                            consequatur, vel illum qui dolorem
                             eum fugiat quo voluptas nulla pariatur?
                         </div>
-                        {% for chemical in chemicals %}
-                        <div class="result-table">
-                            <p><b>{{ chemical.name }}</b> (Z{{ chemical.Z}}, {{ chemical.symbol}}): {{ chemical.worth }}$
-                                ({{ chemical.price_per_kg }} $/kg)</p>
-                        </div>
-                        {% endfor %}
+
+                        <table class="sortable">
+                            <tr>
+                                <th>Name</th>
+                                <th>Z</th>
+                                <th>Symbol</th>
+                                <th>Worth (€)</th>
+                                <th>Price (/kg)</th>
+                            </tr>
+                            {% for chemical in chemicals %}
+                            <tr class="item">
+                                <td>{{ chemical.name }}</td>
+                                <td>{{ chemical.Z }}</td>
+                                <td>{{ chemical.symbol }}</td>
+                                <td>{{ chemical.worth }}</td>
+                                <td>{{ chemical.price_per_kg }}</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+
                     </div>
-
                 </form>
-
-
             </div>
 
             <div id="about" class="tab-pane fade">

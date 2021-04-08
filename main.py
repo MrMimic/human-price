@@ -6,6 +6,8 @@ import pandas as pd
 from flask import Flask, render_template, request
 from utilities import average_range, get_body_composition, get_chemical_prices
 
+pd.set_option('display.float_format', lambda x: '%.3f' % x)
+
 
 def get_data(weight: float = 70) -> pd.DataFrame:
     """Calls Wikipedia for body composition and chemical prices.
@@ -28,6 +30,8 @@ def get_data(weight: float = 70) -> pd.DataFrame:
     # Apply weight coefficient
     global_df["mass"] = global_df["fraction"] * weight
     global_df["worth"] = global_df["mass"] * global_df["price_per_kg"]
+    global_df["worth"] = global_df["worth"].apply(lambda x: round(x, 4))
+
     return global_df.sort_values(by="worth", ascending=False)
 
 

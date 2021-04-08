@@ -37,7 +37,7 @@ def average_range(x: str) -> float:
         casted = float(x)
     except ValueError:
         splited = [convert_scientific_notation(i) for i in x.split("–")]
-        casted = float(np.mean(splited))
+        casted = round(float(np.mean(splited)), 4)
     return casted
 
 

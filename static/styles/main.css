@@ -204,9 +204,12 @@ span#weight-value {
 }
 
 .details-text {
-    margin-bottom: 2%;
+    margin-bottom: 5%;
+    text-align: center;
 }
 
-.result-table {
+.sortable {
     font-family: 'Courier New', Courier, monospace;
+    width: 80%;
+    text-align: left;
 }
